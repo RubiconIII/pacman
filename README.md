@@ -1,1 +1,1 @@
-# pacman code for an in class assignment
+# Pacman code for an in class assignment.
