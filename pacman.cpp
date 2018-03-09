@@ -19,10 +19,12 @@ void displayFcn(void);
 void pacMan(int);
 void timer(int value);
 void arrowFunc(int, int, int);
+void keyboardFunc(unsigned char, int, int);
 void init(void);
 void winReshapeFcn(GLint newWidth, GLint newHeight);
 void updatePos(int);
 void parseArgs(int argc, char **argv);
+
 
 int xPos = 300;
 int yPos = 300;
@@ -35,6 +37,7 @@ int main(int argc, char **argv) {
     glutInitWindowPosition(50, 50);
     glutInitWindowSize(winWidth, winHeight);
     glutCreateWindow("Pac Man");
+    glutKeyboardFunc(keyboardFunc);
     glutSpecialFunc(arrowFunc);
 
     init();
@@ -65,6 +68,14 @@ void timer(int value) {
     glutTimerFunc(REFRESH_MS, timer, 0); // next timer call milliseconds later
 }
 
+void keyboardFunc(unsigned char Key, int x, int y) {
+    switch (Key) {
+    case 'w':
+        wrapAround = !wrapAround;
+        std::cout << "Wraparound set to " << ((wrapAround) ? "true" : "false") << std::endl;
+        break;
+    };
+}
 
 void arrowFunc(int key, int x, int y) {
     switch (key) {
